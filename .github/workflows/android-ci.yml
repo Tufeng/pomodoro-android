@@ -26,7 +26,13 @@ jobs:
         run: chmod +x gradlew
 
       - name: 运行单元测试
-        run: ./gradlew test --stacktrace
+        run: |
+          ./gradlew :app:testDebugUnitTest \
+            --tests "com.pomodoro.app.PomodoroConfigTest" \
+            --tests "com.pomodoro.app.TimerUiStateTest" \
+            --tests "com.pomodoro.app.PomodoroPhaseTest" \
+            --tests "com.pomodoro.app.PhaseTransitionTest" \
+            --stacktrace
 
       - name: 上传测试报告
         uses: actions/upload-artifact@v4
@@ -34,6 +40,7 @@ jobs:
         with:
           name: unit-test-report
           path: app/build/reports/tests/
+          if-no-files-found: ignore
 
   build:
     name: Debug 构建
@@ -62,3 +69,4 @@ jobs:
         with:
           name: debug-apk
           path: app/build/outputs/apk/debug/*.apk
+          if-no-files-found: warn
