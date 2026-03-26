@@ -82,27 +82,3 @@ fun PomodoroApp(viewModel: PomodoroViewModel) {
         }
     }
 }
-
-
-@Composable
-fun PomodoroApp(viewModel: PomodoroViewModel) {
-    val navController = rememberNavController()
-
-    NavHost(
-        navController = navController,
-        startDestination = "timer"
-    ) {
-        composable("timer") {
-            TimerScreen(
-                viewModel = viewModel,
-                onNavigateToSettings = { navController.navigate("settings") }
-            )
-        }
-        composable("settings") {
-            SettingsScreen(
-                viewModel = viewModel,
-                onNavigateBack = { navController.popBackStack() }
-            )
-        }
-    }
-}
