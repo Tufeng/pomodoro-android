@@ -1,0 +1,32 @@
+## Android / Gradle
+.gradle/
+local.properties
+build/
+*.apk
+*.aab
+*.aar
+*.ap_
+*.dex
+
+## Android Studio / IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+captures/
+.externalNativeBuild/
+.cxx/
+
+## Signing / Keystore（绝对不能上传）
+*.jks
+*.keystore
+keystore/
+release/
+
+## macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+## User-specific files
+*.user

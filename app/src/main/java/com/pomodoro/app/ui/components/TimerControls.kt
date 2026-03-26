@@ -1,0 +1,102 @@
+package com.pomodoro.app.ui.components
+
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import com.pomodoro.app.R
+import com.pomodoro.app.data.model.TimerState
+
+/**
+ * 底部控制按钮组：开始/暂停/继续 + 跳过 + 重置
+ */
+@Composable
+fun TimerControls(
+    timerState: TimerState,
+    primaryColor: Color,
+    onStart: () -> Unit,
+    onPause: () -> Unit,
+    onResume: () -> Unit,
+    onSkip: () -> Unit,
+    onReset: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 32.dp),
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        // 重置按钮（仅非空闲状态显示）
+        if (timerState != TimerState.IDLE) {
+            IconButton(
+                onClick = onReset,
+                modifier = Modifier.size(52.dp)
+            ) {
+                Icon(
+                    painter = painterResource(R.drawable.ic_reset),
+                    contentDescription = "重置",
+                    tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
+                    modifier = Modifier.size(28.dp)
+                )
+            }
+        } else {
+            Spacer(modifier = Modifier.size(52.dp))
+        }
+
+        // 主按钮：开始 / 暂停 / 继续
+        Button(
+            onClick = when (timerState) {
+                TimerState.IDLE -> onStart
+                TimerState.RUNNING -> onPause
+                TimerState.PAUSED -> onResume
+            },
+            modifier = Modifier
+                .size(80.dp)
+                .clip(CircleShape),
+            shape = CircleShape,
+            colors = ButtonDefaults.buttonColors(containerColor = primaryColor),
+            contentPadding = PaddingValues(0.dp)
+        ) {
+            Icon(
+                painter = painterResource(
+                    when (timerState) {
+                        TimerState.RUNNING -> R.drawable.ic_pause
+                        else -> R.drawable.ic_play
+                    }
+                ),
+                contentDescription = when (timerState) {
+                    TimerState.RUNNING -> "暂停"
+                    TimerState.PAUSED -> "继续"
+                    else -> "开始"
+                },
+                tint = Color.White,
+                modifier = Modifier.size(36.dp)
+            )
+        }
+
+        // 跳过按钮（仅运行/暂停状态显示）
+        if (timerState != TimerState.IDLE) {
+            IconButton(
+                onClick = onSkip,
+                modifier = Modifier.size(52.dp)
+            ) {
+                Icon(
+                    painter = painterResource(R.drawable.ic_skip),
+                    contentDescription = "跳过",
+                    tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
+                    modifier = Modifier.size(28.dp)
+                )
+            }
+        } else {
+            Spacer(modifier = Modifier.size(52.dp))
+        }
+    }
+}
