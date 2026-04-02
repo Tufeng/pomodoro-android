@@ -1,0 +1,25 @@
+[
+  {
+    "number": 1,
+    "category": "阶段 1：主结构重构",
+    "task": "MainActivity 改为底部导航架构",
+    "steps": [
+      { "step": "新增 MainScreen.kt，使用 Scaffold + NavigationBar 组件", "completed": false },
+      { "step": "定义 3 个 BottomNavItem：计时(Timer)、场景(Scene)、设置(Settings)", "completed": false },
+      { "step": "NavHost 配置 3 个路由：timer、scenes、settings", "completed": false },
+      { "step": "移除原右上角设置 IconButton", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 2,
+    "category": "阶段 2：计时 Tab 状态保持",
+    "task": "切换 Tab 时计时不中断",
+    "steps": [
+      { "step": "TimerService 保持 foreground 运行，不受页面切换影响", "completed": false },
+      { "step": "返回计时 Tab 时从 Service 重新绑定状态", "completed": false },
+      { "step": "计时进行中，计时 Tab 图标显示进度环动画（可选，后续迭代）", "completed": false }
+    ],
+    "passes": false
+  }
+]

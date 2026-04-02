@@ -1,0 +1,24 @@
+[
+  {
+    "number": 1,
+    "category": "阶段 1：SnapSlider 组件",
+    "task": "实现磁吸滑块组件",
+    "steps": [
+      { "step": "新增 SnapSlider.kt Composable，参数：value, onValueChange, snapPoints: List<Int>, range", "completed": false },
+      { "step": "实现磁吸逻辑：拖动结束时检测距锚点距离，≤2分钟则吸附", "completed": false },
+      { "step": "绘制锚点刻度线和数字标注（Canvas 自定义绘制）", "completed": false },
+      { "step": "吸附时调用 HapticFeedbackType.TextHandleMove 触感反馈", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 2,
+    "category": "阶段 2：集成",
+    "task": "替换场景编辑页中的现有 Slider",
+    "steps": [
+      { "step": "SceneEditScreen 中工作时长、短休时长、长休时长均替换为 SnapSlider", "completed": false },
+      { "step": "锚点配置：listOf(25, 30, 45, 60)", "completed": false }
+    ],
+    "passes": false
+  }
+]

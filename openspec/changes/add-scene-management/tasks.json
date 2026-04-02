@@ -1,0 +1,94 @@
+[
+  {
+    "number": 1,
+    "category": "阶段 1：数据层",
+    "task": "新增 Scene 数据模型和 Room 数据库迁移",
+    "steps": [
+      { "step": "在 data/model/ 新增 Scene.kt 数据类（@Entity）", "completed": false },
+      { "step": "在 data/dao/ 新增 SceneDao.kt（含 CRUD + getDefault）", "completed": false },
+      { "step": "AppDatabase 版本从 1 升至 2，新增 scenes 表迁移脚本", "completed": false },
+      { "step": "在 Database 初始化回调中插入 3 个预设场景", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 2,
+    "category": "阶段 1：数据层",
+    "task": "旧版全局配置迁移逻辑",
+    "steps": [
+      { "step": "在 AppDatabase Migration 中读取旧 DataStore 配置", "completed": false },
+      { "step": "将旧配置写入名为「我的默认场景」的 Scene 记录并设为默认", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 3,
+    "category": "阶段 2：业务逻辑",
+    "task": "Repository 层新增 SceneRepository",
+    "steps": [
+      { "step": "新增 SceneRepository.kt，封装 SceneDao 操作", "completed": false },
+      { "step": "提供 getAll()、getDefault()、setDefault()、insert()、update()、delete() 方法", "completed": false },
+      { "step": "在 DI/AppModule 中注入 SceneRepository", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 4,
+    "category": "阶段 2：业务逻辑",
+    "task": "TimerService 改为从 Scene 读取配置",
+    "steps": [
+      { "step": "TimerService 增加 activeScene: Scene 属性", "completed": false },
+      { "step": "startTimer() 方法接收 Scene 参数，替换原 DataStore 读取逻辑", "completed": false },
+      { "step": "切换场景时调用 resetTimer(newScene) 方法", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 5,
+    "category": "阶段 3：UI - 场景列表页",
+    "task": "新增 SceneListScreen",
+    "steps": [
+      { "step": "新增 SceneListScreen.kt，展示场景卡片列表", "completed": false },
+      { "step": "卡片显示：场景名、时长摘要、默认标记（⭐）、预设标记", "completed": false },
+      { "step": "点击卡片：切换当前使用场景（计时未进行时直接切换）", "completed": false },
+      { "step": "长按卡片：弹出操作菜单（编辑/设为默认/删除，预设场景删除置灰）", "completed": false },
+      { "step": "右上角「+」按钮跳转场景编辑页", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 6,
+    "category": "阶段 3：UI - 场景编辑页",
+    "task": "新增 SceneEditScreen",
+    "steps": [
+      { "step": "新增 SceneEditScreen.kt，支持新建和编辑两种模式", "completed": false },
+      { "step": "输入项：场景名称（TextField）、工作时长（SnapSlider）、短休时长（SnapSlider）、长休时长（SnapSlider）、循环次数（Stepper）", "completed": false },
+      { "step": "保存前校验：名称非空，时长 > 0", "completed": false },
+      { "step": "保存成功后返回场景列表", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 7,
+    "category": "阶段 3：UI - 计时页改造",
+    "task": "计时页增加场景名显示和切换逻辑",
+    "steps": [
+      { "step": "计时器下方增加场景名 Text 组件，样式：次要颜色，14sp", "completed": false },
+      { "step": "点击场景名弹出 ModalBottomSheet 展示场景列表", "completed": false },
+      { "step": "计时中选择新场景触发确认 AlertDialog", "completed": false },
+      { "step": "确认后调用 TimerService.resetTimer(newScene)", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 8,
+    "category": "阶段 4：SceneViewModel",
+    "task": "新增 SceneViewModel",
+    "steps": [
+      { "step": "新增 SceneViewModel.kt，持有 scenes: StateFlow<List<Scene>>", "completed": false },
+      { "step": "实现 createScene()、updateScene()、deleteScene()、setDefault() 方法", "completed": false },
+      { "step": "在 SceneListScreen 和 SceneEditScreen 中使用", "completed": false }
+    ],
+    "passes": false
+  }
+]

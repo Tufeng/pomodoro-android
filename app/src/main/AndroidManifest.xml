@@ -7,13 +7,13 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
-        android:name=".PomodoroApplication"
+        android:name=".FlowCycleApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PomodoroApp">
+        android:theme="@style/Theme.FlowCycleApp">
 
         <activity
             android:name=".MainActivity"
@@ -26,7 +26,7 @@
         </activity>
 
         <service
-            android:name=".service.PomodoroTimerService"
+            android:name=".service.FlowCycleTimerService"
             android:exported="false"
             android:foregroundServiceType="specialUse">
             <property

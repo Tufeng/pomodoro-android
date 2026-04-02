@@ -1,0 +1,36 @@
+[
+  {
+    "number": 1,
+    "category": "阶段 1：配置项",
+    "task": "DataStore 新增提醒设置",
+    "steps": [
+      { "step": "在 UserPreferences 中新增 soundEnabled: Boolean（默认 true）", "completed": false },
+      { "step": "在 UserPreferences 中新增 vibrationEnabled: Boolean（默认 true）", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 2,
+    "category": "阶段 2：提醒逻辑",
+    "task": "TimerService 阶段切换时触发提醒",
+    "steps": [
+      { "step": "新增 ReminderManager.kt，封装声音和震动调用", "completed": false },
+      { "step": "声音：使用 MediaPlayer 播放系统提示音（RingtoneManager.TYPE_NOTIFICATION）", "completed": false },
+      { "step": "震动：使用 VibrationEffect.createOneShot(500ms, DEFAULT_AMPLITUDE)", "completed": false },
+      { "step": "在工作段结束、休息段结束时分别调用 ReminderManager.notify()", "completed": false },
+      { "step": "检查 AndroidManifest 已声明 VIBRATE 权限", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 3,
+    "category": "阶段 3：设置 UI",
+    "task": "设置页新增提醒方式配置",
+    "steps": [
+      { "step": "SettingsScreen 新增「提醒方式」分组", "completed": false },
+      { "step": "声音开关（Switch）+ 震动开关（Switch）", "completed": false },
+      { "step": "开关状态与 DataStore 双向绑定", "completed": false }
+    ],
+    "passes": false
+  }
+]

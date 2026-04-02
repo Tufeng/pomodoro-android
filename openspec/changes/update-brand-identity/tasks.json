@@ -1,0 +1,35 @@
+[
+  {
+    "number": 1,
+    "category": "阶段 1：包名重命名",
+    "task": "全局修改包名和 applicationId",
+    "steps": [
+      { "step": "app/build.gradle.kts：applicationId 改为 com.flowcycle.app", "completed": false },
+      { "step": "Android Studio：Refactor → Rename Package，将 com.pomodoro.app 全局改为 com.flowcycle.app", "completed": false },
+      { "step": "检查 AndroidManifest.xml package 声明更新", "completed": false },
+      { "step": "检查所有 Kotlin 文件顶部 package 声明已更新", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 2,
+    "category": "阶段 2：名称和文案",
+    "task": "更新 App 名称和文案",
+    "steps": [
+      { "step": "res/values/strings.xml：app_name 改为「节律」", "completed": false },
+      { "step": "res/values-en/strings.xml（如有）：app_name 改为「FlowCycle」", "completed": false },
+      { "step": "README.md 更新项目名称和描述", "completed": false }
+    ],
+    "passes": false
+  },
+  {
+    "number": 3,
+    "category": "阶段 3：验证",
+    "task": "构建验证",
+    "steps": [
+      { "step": "执行 ./gradlew assembleDebug，确认无包名相关编译错误", "completed": false },
+      { "step": "在模拟器安装新包名 APK，确认 App 名称显示为「节律」", "completed": false }
+    ],
+    "passes": false
+  }
+]

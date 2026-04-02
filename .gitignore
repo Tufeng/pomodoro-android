@@ -30,3 +30,6 @@ release/
 
 ## User-specific files
 *.user
+
+## WorkBuddy Skills（本地工具，不上传）
+.github/skills/
